@@ -1,5 +1,6 @@
 package com.adobe.phonegap.push
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
@@ -489,6 +490,7 @@ class PushPlugin : CordovaPlugin() {
           subscribeToTopics(topics)
 
           sendEvent(registration)
+          cordova.activity.requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1000);
         } else {
           callbackContext.error("Empty registration ID received from FCM")
           return@Runnable
